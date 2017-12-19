@@ -1,0 +1,94 @@
+body{
+  text-align: center;
+  background-color: #EFEFEF;
+  margin: 0 auto;
+  font-family: Georgia, Verdana, sans-serif;
+  
+  
+
+}
+
+.weatherBar{
+	margin: auto;
+	margin-top: 10px;
+    height: 100%;
+    width: 800px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+    
+
+}
+
+.currentDiv{
+	width: 100%;
+	height: 150px;
+	top: 0;
+}
+
+.head{
+	width: 45%;
+	margin: auto;
+}
+
+.rightHead{
+	float: right;
+}
+
+.leftHead{
+	float: left;
+}
+
+h1{
+	font-size: 24px;
+}
+
+h3{
+	margin: 0;
+	font-size: 18px;
+}
+
+.tempImg{
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
+.icon, .currTemp{
+	display: inline-block;	
+	font-size: 35px;
+}
+
+.icon{
+	height: 100px;
+}
+
+.currTemp{
+	vertical-align: top;
+}
+
+.hourlyDiv{	
+	top: 150px;	
+	bottom: 60px;
+	left: 10%;
+	right: 10%;	
+	height: 220px;
+	width: 800px;   
+	padding: 30px;
+	margin: 0;
+}
+
+.forecastDiv{
+	top: 370px;	
+	bottom: 0px;
+	left: 10%;
+	right: 10%;	
+	height: 240px;
+	width: 800px;   
+	padding: 30px;
+	margin: 0;
+}
+
+
+
+
