@@ -1,23 +1,27 @@
-body{
-  text-align: center;
-  background-color: #EFEFEF;
-  margin: 0 auto;
-  font-family: Georgia, Verdana, sans-serif;
-  
-  
+html{
+	margin: 0;
+	height: 100%;
+	width: 100%;
+}
 
+body{
+  margin: 0 auto;
+  min-height: 100%;
+  text-align: center;
+  background-color: #00ccff;
+  background: linear-gradient(to bottom right, #00a3cc, #b3ffff);
+  font-family: Georgia, Verdana, sans-serif;  
 }
 
 .weatherBar{
+	color: white;
 	margin: auto;
 	margin-top: 10px;
     height: 100%;
     width: 800px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 5px;
-    
-
+    grid-gap: 5px;    
 }
 
 .currentDiv{
@@ -27,7 +31,7 @@ body{
 }
 
 .head{
-	width: 45%;
+	width: 50%;
 	margin: auto;
 }
 
@@ -40,7 +44,7 @@ body{
 }
 
 h1{
-	font-size: 24px;
+	font-size: 22px;
 }
 
 h3{
@@ -56,11 +60,11 @@ h3{
 
 .icon, .currTemp{
 	display: inline-block;	
-	font-size: 35px;
+	font-size: 30px;
 }
 
 .icon{
-	height: 100px;
+	height: 90px;
 }
 
 .currTemp{

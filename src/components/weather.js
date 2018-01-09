@@ -33,7 +33,7 @@ class Weather extends Component{
 
 		this.getDate = this.getDate.bind(this);		
 		this.getTime = this.getTime.bind(this);
-		this.getHourlyData = this.getHourlyData.bind(this);
+		//this.getHourlyData = this.getHourlyData.bind(this);
 		this.getForecastData = this.getForecastData.bind(this);
 	}
 
@@ -41,7 +41,7 @@ class Weather extends Component{
 		axios.get('https://api.apixu.com/v1/forecast.json?key=f7ceca9d7c314abbaf681318171112&q='+this.props.lat+','+this.props.lon+'&days=7')
 		.then(res => {		
 			let forecast = res.data.forecast.forecastday.map(obj => obj);
-			let hourly = res.data.forecast.forecastday[0].hour.map(obj => obj);			
+			//let hourly = res.data.forecast.forecastday[0].hour.map(obj => obj);			
 
 			this.setState({
 				currentTemp: res.data.current.temp_f,
@@ -50,12 +50,12 @@ class Weather extends Component{
 				condition: res.data.current.condition.text,
 				conditionIcon: res.data.current.condition.icon,
 				localTimeEpoch: res.data.current.last_updated_epoch,
-				hourly: hourly,
+				//hourly: hourly,
 				forecast: forecast,
 			})
 
 			this.setState({
-				hourlyData: this.getHourlyData(),
+				//hourlyData: this.getHourlyData(),
 				forecastData: this.getForecastData(),
 			})
 		});
@@ -112,54 +112,54 @@ class Weather extends Component{
 			return hour + " AM";
 	}
 
-	getHourlyData(){
-		if(!this.state.hourly) return;
-		let hourly = this.state.hourly;
-		let nextDayHourly = this.state.forecast[1].hour;
+	// getHourlyData(){
+	// 	if(!this.state.hourly) return;
+	// 	let hourly = this.state.hourly;
+	// 	let nextDayHourly = this.state.forecast[1].hour;
 		
-		let data = [
-					  {
-					  	"id": "hourly",
-					  	"color": "hsl(0, 100%, 100%)",
-					  	"data": [
-					  	],
-					  }
-					];		
+	// 	let data = [
+	// 				  {
+	// 				  	"id": "hourly",
+	// 				  	"color": "hsl(0, 100%, 100%)",
+	// 				  	"data": [
+	// 				  	],
+	// 				  }
+	// 				];		
 
-		var i = 0;
+	// 	var i = 0;
 
-		while(this.state.localTimeEpoch > hourly[i].time_epoch){
-			i++;
-		}
+	// 	while(this.state.localTimeEpoch > hourly[i].time_epoch){
+	// 		i++;
+	// 	}
 	
-		var hourCount = 0;
-		while(i < hourly.length && hourCount < 5){			
-			data[0].data.push(
-				{
-					"color": "hsl(0, 100%, 100%)",
-					"x": this.getTime(nextDayHourly[i].time.split(" ")[1]),
-					"y": hourly[i].temp_f,
-				}
-			)
-			hourCount++;
-			i+=3;
-		}
-		i = 0;
-		if(hourCount < 5){
-			while(hourCount < 5){
-				data[0].data.push(
-					{
-						"color": "hsl(0, 100%, 100%)",
-						"x": this.getTime(nextDayHourly[i].time.split(" ")[1]),
-						"y": nextDayHourly[i].temp_f,
-					}
-				)
-				hourCount++;
-				i+=3;
-			}
-		}
-		return data;
-	}
+	// 	var hourCount = 0;
+	// 	while(i < hourly.length && hourCount < 5){			
+	// 		data[0].data.push(
+	// 			{
+	// 				"color": "hsl(0, 100%, 100%)",
+	// 				"x": this.getTime(nextDayHourly[i].time.split(" ")[1]),
+	// 				"y": hourly[i].temp_f,
+	// 			}
+	// 		)
+	// 		hourCount++;
+	// 		i+=3;
+	// 	}
+	// 	i = 0;
+	// 	if(hourCount < 5){
+	// 		while(hourCount < 5){
+	// 			data[0].data.push(
+	// 				{
+	// 					"color": "hsl(0, 100%, 100%)",
+	// 					"x": this.getTime(nextDayHourly[i].time.split(" ")[1]),
+	// 					"y": nextDayHourly[i].temp_f,
+	// 				}
+	// 			)
+	// 			hourCount++;
+	// 			i+=3;
+	// 		}
+	// 	}
+	// 	return data;
+	// }
 
 	getForecastData(){
 		if(!this.state.forecast) return;
@@ -169,14 +169,14 @@ class Weather extends Component{
 		let data = [];
 		let dataA = {
 					  	"id": "highs",
-					  	"color": "hsl(199, 100%, 80%)",
+					  	"color": "hsl(186, 100%, 99%)",
 					  	"data": [
 					  	],
 					 };
 
 		let dataB = {
 					  	"id": "lows",
-					  	"color": "hsl(199, 100%, 80%)",
+					  	"color": "hsl(186, 100%, 88%)",
 					  	"data": [
 					  	],
 					 };
@@ -186,7 +186,7 @@ class Weather extends Component{
 		for(var i = 0; i < 7; i++){						
 			dataA.data.push(
 				{
-						"color": "hsl(199, 100%, 80%)",
+						"color": "hsl(186, 100%, 99%)",
 						"x": i===0? "Today" : days[day],
 						"y": forecast[i].day.maxtemp_f,
 				}
@@ -194,7 +194,7 @@ class Weather extends Component{
 
 			dataB.data.push(
 				{
-						"color": "hsl(199, 100%, 80%)",
+						"color": "hsl(186, 100%, 88%)",
 						"x": i===0? "Today" : days[day],
 						"y": forecast[i].day.mintemp_f,
 				}
@@ -226,7 +226,7 @@ class Weather extends Component{
 					</div>													
 					</div>
 				</div>
-				<div className="hourlyDiv">	
+				{/*<div className="hourlyDiv">	
 					<div className="Title">Hourly</div>				
 					<ResponsiveLine
 						data={!this.state.hourlyData ? [{"id": "hourly", "color": "hsl(49,70%,50%)","data":[{"color": "hsl(186, 70%, 50%)", "x": "x", "y": 0 }]}] :
@@ -253,7 +253,7 @@ class Weather extends Component{
 				        motionStiffness={90}
 				        motionDamping={15}
 				    />
-				</div>
+				</div>*/}
 				<div className="forecastDiv">
 					<div className="Title">Forecast</div>
 					<ResponsiveLine
@@ -269,6 +269,17 @@ class Weather extends Component{
 				        minY="auto"
 				        curve="monotoneX"
 				        enableGridY={false}
+				        axisLeft={{
+				            "orient": "left",
+				            "tickSize": 0,
+				            "tickPadding": 20,
+				            "tickRotation": 0,
+				            "legend": "count",
+				            "legendOffset": -60,
+				            "legendPosition": "center"
+				        }}
+				        colors="d320c"
+				        colorBy={function (e){return e.color}}
 				        lineWidth={3}
 				        dotSize={9}
 				        dotColor="inherit"
